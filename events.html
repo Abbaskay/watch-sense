@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Event Rules</h2>
+  <form method="post">
+    <button class="btn btn-success" type="submit">Run Event Check</button>
+  </form>
+</div>
+<ul class="list-group">
+  {% for key, desc in rules %}
+  <li class="list-group-item d-flex justify-content-between align-items-center">
+    <span>{{ desc }}</span>
+    <span class="badge bg-primary">{{ key }}</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

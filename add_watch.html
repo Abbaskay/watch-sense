@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Watch</h2>
+<form method="post" class="row g-3 mt-2">
+  <div class="col-md-6">
+    <label class="form-label">Customer</label>
+    <select name="customer_id" class="form-select" required>
+      <option value="">Select Customer</option>
+      {% for customer in customers %}
+      <option value="{{ customer.id }}" {% if selected_customer_id and customer.id|string == selected_customer_id %}selected{% endif %}>{{ customer.name }} ({{ customer.email }})</option>
+      {% endfor %}
+    </select>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Brand</label>
+    <input type="text" name="brand" class="form-control" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Model No</label>
+    <input type="text" name="model_no" class="form-control" required>
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Serial No</label>
+    <input type="text" name="serial_no" class="form-control">
+  </div>
+  <div class="col-md-6">
+    <label class="form-label">Purchase Date</label>
+    <input type="date" name="purchase_date" class="form-control">
+  </div>
+  <div class="col-12">
+    <label class="form-label">Notes</label>
+    <textarea name="notes" class="form-control" rows="3"></textarea>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a class="btn btn-secondary" href="{{ url_for('watches') }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}

@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Message Logs</h2>
+  <a href="{{ url_for('download_reports') }}" class="btn btn-outline-primary">Download CSV</a>
+</div>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Customer</th>
+      <th>Event</th>
+      <th>Message</th>
+      <th>Status</th>
+      <th>Sent At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for log in logs %}
+    <tr>
+      <td>{{ log.id }}</td>
+      <td>{{ log.customer.name if log.customer else log.customer_id }}</td>
+      <td>{{ log.event_type }}</td>
+      <td style="max-width: 420px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">{{ log.message }}</td>
+      <td><span class="badge bg-info">{{ log.status }}</span></td>
+      <td>{{ log.sent_at.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+    </tr>
+    {% else %}
+    <tr><td colspan="6" class="text-center">No messages yet.</td></tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

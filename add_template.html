@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Template</h2>
+<form method="post" class="row g-3 mt-2">
+  <div class="col-12">
+    <label class="form-label">Template Name</label>
+    <input type="text" name="name" class="form-control" required>
+  </div>
+  <div class="col-12">
+    <label class="form-label">Content</label>
+    <textarea name="content" class="form-control" rows="10" required placeholder="Enter your message template here. Use {customer_name}, {brand}, {model} as placeholders."></textarea>
+    <div class="form-text">Use placeholders: {customer_name}, {brand}, {model}, {purchase_date}</div>
+  </div>
+  <div class="col-12">
+    <button class="btn btn-primary" type="submit">Save</button>
+    <a class="btn btn-secondary" href="{{ url_for('templates') }}">Cancel</a>
+  </div>
+</form>
+{% endblock %}

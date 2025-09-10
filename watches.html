@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <h2>Watches</h2>
+  <a href="{{ url_for('add_watch') }}" class="btn btn-primary">Add Watch</a>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Customer</th>
+          <th>Brand</th>
+          <th>Model</th>
+          <th>Serial No</th>
+          <th>Purchase Date</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for watch in watches %}
+        <tr>
+          <td>{{ watch.watch_id }}</td>
+          <td>{{ watch.customer.name if watch.customer else 'N/A' }}</td>
+          <td>{{ watch.brand }}</td>
+          <td>{{ watch.model_no }}</td>
+          <td>{{ watch.serial_no }}</td>
+          <td>{{ watch.purchase_date }}</td>
+          <td>{{ watch.notes[:50] + '...' if watch.notes and watch.notes|length > 50 else watch.notes }}</td>
+        </tr>
+        {% else %}
+        <tr><td colspan="7" class="text-center">No watches found.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% endblock %}
